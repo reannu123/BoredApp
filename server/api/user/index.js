@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const User = require("../../models/UserModel");
+const UsersController = require("../../controllers/UsersController");
 
-router.get("/", (req, res) => {
-  res.send(["login", "register", "logout"]);
-});
+router.get("/", UsersController.getUsers);
 
 router.use("/login", require("./login"));
 router.use("/register", require("./register"));

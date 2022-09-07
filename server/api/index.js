@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const MainController = require("../controllers/MainController");
 
-router.get("/", (req, res) => {
-  res.send(["user", "task"]);
-});
+router.get("/", MainController.index);
+
 router.use("/task", require("./task"));
 router.use("/user", require("./user"));
 
