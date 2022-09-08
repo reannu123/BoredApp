@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const TasksController = require("../../controllers/TasksController");
+const authenticateToken = require("../../auth/authenticate");
 
-router.get("/", (req, res) => {
-  res.send("Add task to database for user");
-});
+router.post("/", authenticateToken, TasksController.addTask);
 
 module.exports = router;

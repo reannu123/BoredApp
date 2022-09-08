@@ -1,5 +1,7 @@
 const UserDAO = require("../dao/UserDAO");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 class UsersController {
   static async getUsers(req, res, next) {
@@ -37,7 +39,11 @@ class UsersController {
       try {
         // compare password with hashed password
         if (await bcrypt.compare(password, user[0].password)) {
-          res.send("Success");
+          const accessToken = jwt.sign(
+            user[0].username,
+            process.env.ACCESS_TOKEN_SECRET
+          );
+          res.json({ accessToken: accessToken });
         } else {
           res.send("Not Allowed");
         }
