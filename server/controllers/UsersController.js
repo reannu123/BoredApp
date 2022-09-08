@@ -1,4 +1,5 @@
 const UserDAO = require("../dao/UserDAO");
+const bcrypt = require("bcrypt");
 
 class UsersController {
   static async getUsers(req, res, next) {
@@ -12,10 +13,41 @@ class UsersController {
 
   static async registerUser(req, res, next) {
     try {
-      const user = await UserDAO.makeUser(req.body.username, req.body.password);
+      const { username, password } = req.body;
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const user = await UserDAO.makeUser(username, hashedPassword);
       res.status(201).json(user);
     } catch (error) {
       res.status(400).json({ message: error.message });
+    }
+  }
+
+  static async loginUser(req, res, next) {
+    try {
+      const { username, password } = req.body;
+
+      // Check user from database
+      const user = await UserDAO.getUsers(username);
+
+      // If user does not exist, return 400
+      if (user == null) {
+        return res.status(400).json({ message: "Cannot find user" });
+      }
+      // If user exists, check password
+      try {
+        // compare password with hashed password
+        if (await bcrypt.compare(password, user[0].password)) {
+          res.send("Success");
+        } else {
+          res.send("Not Allowed");
+        }
+      } catch (error) {
+        console.log("Failed to compare: ", error.message);
+        res.status(500).json({ message: error.message });
+      }
+    } catch (error) {
+      console.log("Failed to login: ", error.message);
+      res.status(500).json({ message: error.message });
     }
   }
 }
