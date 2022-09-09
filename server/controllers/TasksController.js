@@ -12,7 +12,7 @@ class TasksController {
 
   static async addTask(req, res, next) {
     try {
-      const { username, task } = req.body;
+      const task = req.body.task;
       const newTask = await TaskDao.addTask(req.user, task);
       res.status(201).json(newTask);
     } catch (error) {
@@ -22,7 +22,7 @@ class TasksController {
 
   static async deleteTask(req, res, next) {
     try {
-      const { id } = req.body;
+      const id = req.body._id;
       const deletedTask = await TaskDao.deleteTask(id);
       res.status(201).json(deletedTask);
     } catch (error) {

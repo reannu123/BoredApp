@@ -6,6 +6,11 @@ class TaskDAO {
     return newtask.save();
   }
 
+  static async deleteTask(id) {
+    console.log(id);
+    return TaskModel.findByIdAndDelete(id);
+  }
+
   static async getTasks(username = null) {
     if (username) {
       return TaskModel.find({ username });
