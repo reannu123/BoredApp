@@ -8,6 +8,11 @@ class TaskDAO {
 
   static async deleteTask(username, taskID) {
     const task = await TaskModel.findById(taskID);
+
+    if (!task) {
+      return null;
+    }
+
     if (task.username === username) {
       return TaskModel.findByIdAndDelete(taskID);
     }
@@ -23,6 +28,10 @@ class TaskDAO {
 
   static async updateTask(username, status, taskID) {
     const task = await TaskModel.findById(taskID);
+
+    if (!task) {
+      return null;
+    }
 
     if (task.username === username) {
       return TaskModel.findByIdAndUpdate(taskID, { done: status });

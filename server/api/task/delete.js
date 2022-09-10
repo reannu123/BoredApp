@@ -1,8 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const TasksController = require("../../controllers/TasksController");
-const authenticateToken = require("../../auth/authenticate");
+const passport = require("passport");
 
-router.delete("/", authenticateToken, TasksController.deleteTask);
+router.delete(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  TasksController.deleteTask
+);
 
 module.exports = router;
