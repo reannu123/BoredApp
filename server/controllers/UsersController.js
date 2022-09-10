@@ -40,8 +40,9 @@ class UsersController {
         // compare password with hashed password
         if (await bcrypt.compare(password, user[0].password)) {
           const accessToken = jwt.sign(
-            user[0].username,
-            process.env.ACCESS_TOKEN_SECRET
+            { username: user[0].username },
+            process.env.ACCESS_TOKEN_SECRET,
+            { expiresIn: "5m" }
           );
           res.json({ accessToken: accessToken });
         } else {
@@ -56,6 +57,8 @@ class UsersController {
       res.status(500).json({ message: error.message });
     }
   }
+
+  static async logoutUser(req, res, next) {}
 }
 
 module.exports = UsersController;
