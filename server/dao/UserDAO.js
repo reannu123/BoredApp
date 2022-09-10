@@ -1,6 +1,10 @@
 const UserModel = require("../models/UserModel");
 
 class UserDAO {
+  static async findUser(username) {
+    return UserModel.find({ username });
+  }
+
   static async getUsers(username = null) {
     if (username) {
       return UserModel.find({ username });

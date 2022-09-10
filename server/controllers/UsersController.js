@@ -32,7 +32,7 @@ class UsersController {
       const user = await UserDAO.getUsers(username);
 
       // If user does not exist, return 400
-      if (user == null) {
+      if (user[0] == null) {
         return res.status(400).json({ message: "Cannot find user" });
       }
       // If user exists, check password

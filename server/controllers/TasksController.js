@@ -13,7 +13,7 @@ class TasksController {
   static async addTask(req, res, next) {
     try {
       const task = req.body.task;
-      const newTask = await TaskDao.addTask(req.username, task);
+      const newTask = await TaskDao.addTask(req.user[0].username, task);
       res.status(201).json(newTask);
     } catch (error) {
       res.status(400).json({ message: error.message });
