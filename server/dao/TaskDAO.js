@@ -6,9 +6,12 @@ class TaskDAO {
     return newtask.save();
   }
 
-  static async deleteTask(id) {
-    console.log(id);
-    return TaskModel.findByIdAndDelete(id);
+  static async deleteTask(username, taskID) {
+    const task = await TaskModel.findById(taskID);
+    if (task.username === username) {
+      return TaskModel.findByIdAndDelete(taskID);
+    }
+    return "Forbidden";
   }
 
   static async getTasks(username = null) {
@@ -16,6 +19,15 @@ class TaskDAO {
       return TaskModel.find({ username });
     }
     return TaskModel.find();
+  }
+
+  static async updateTask(username, status, taskID) {
+    const task = await TaskModel.findById(taskID);
+
+    if (task.username === username) {
+      return TaskModel.findByIdAndUpdate(taskID, { done: status });
+    }
+    return "Forbidden";
   }
 }
 

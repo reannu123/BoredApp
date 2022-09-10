@@ -15,5 +15,6 @@ db.once("open", () => console.log("Connected to Database"));
 
 authApp.use(express.json());
 authApp.post("/login", UsersController.loginUser);
+authApp.post("/register", UsersController.registerUser);
 
 authApp.listen(4000, () => console.log("Auth Server Started at 4000"));

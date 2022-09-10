@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
 
 router.use("/add", require("./addtask"));
 router.use("/delete", require("./delete"));
-router.use("/done", require("./done"));
+router.use("/updatestatus", require("./done"));
 router.use("/getall", require("./gettasks"));
 
 module.exports = router;
