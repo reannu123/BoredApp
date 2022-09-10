@@ -5,7 +5,8 @@ class UserDAO {
     if (username) {
       return UserModel.find({ username });
     }
-    return UserModel.find();
+    const users = await UserModel.find();
+    return users.map((user) => ({ username: user.username, id: user._id }));
   }
 
   static async makeUser(username, password) {
