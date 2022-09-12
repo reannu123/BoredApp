@@ -3,7 +3,7 @@ const authApp = express();
 const UsersController = require("../controllers/UsersController");
 const mongoose = require("mongoose");
 const passport = require("passport");
-
+const cors = require("cors");
 require("dotenv").config();
 
 mongoose.connect(process.env.DB_URL, {
@@ -16,6 +16,12 @@ db.once("open", () => console.log("Connected to Database"));
 
 authApp.use(passport.initialize());
 authApp.use(express.json());
+authApp.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
 
 authApp.post("/login", UsersController.loginUser);
 authApp.post("/register", UsersController.registerUser);
