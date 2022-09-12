@@ -8,11 +8,11 @@ function Login() {
 
   const [success, setSuccess] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(username, password);
     try {
-      const response = auth.post(
+      const response = await auth.post(
         "/login",
         JSON.stringify({ username, password }),
         {
@@ -21,6 +21,7 @@ function Login() {
         }
       );
       console.log(response);
+      console.log(response.data.accessToken);
       setSuccess(true);
     } catch (e) {
       console.log(e);
