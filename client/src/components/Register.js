@@ -1,27 +1,30 @@
-import { Alert, Container, Form, Button } from "react-bootstrap";
+import { Alert, Container, Form, Button, Label } from "react-bootstrap";
 import { useState } from "react";
+
+import { Link } from "react-router-dom";
 import { instance, auth } from "../api/axios";
 
 function Register() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+  });
 
   const [success, setSuccess] = useState(false);
 
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
   const handleSubmit = async (e) => {
+    console.log(user);
     e.preventDefault();
-    console.log(username, password);
     try {
-      const response = await auth.post(
-        "/register",
-        JSON.stringify({ username, password }),
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
+      const response = await auth.post("/register", user, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
       console.log(response);
-      console.log(response.data.accessToken);
       setSuccess(true);
     } catch (e) {
       console.log(e);
@@ -35,12 +38,14 @@ function Register() {
       ) : (
         <Container className="py-5 my-5 border rounded-3 d-flex align-items-center justify-content-center">
           <Form onSubmit={handleSubmit}>
+            <h1 className="mb-5">Register</h1>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Username</Form.Label>
               <Form.Control
                 type="username"
+                name="username"
                 placeholder="Enter username"
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={handleChange}
               />
             </Form.Group>
 
@@ -48,13 +53,14 @@ function Register() {
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
+                name="password"
                 placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handleChange}
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group>
+            <p>
+              Already have an account? <Link to="/login">Log in!</Link>
+            </p>
             <Button variant="primary" type="submit">
               Submit
             </Button>

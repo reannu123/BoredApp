@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Login from "./components/Login";
+import Register from "./components/Register";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
@@ -8,7 +9,10 @@ function App() {
 
   return (
     <>
-      <Login />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
     </>
   );
 }
