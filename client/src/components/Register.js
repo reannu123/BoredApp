@@ -1,9 +1,68 @@
-import React from 'react'
+import { Alert, Container, Form, Button } from "react-bootstrap";
+import { useState } from "react";
+import { instance, auth } from "../api/axios";
 
 function Register() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [success, setSuccess] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(username, password);
+    try {
+      const response = await auth.post(
+        "/register",
+        JSON.stringify({ username, password }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      console.log(response);
+      console.log(response.data.accessToken);
+      setSuccess(true);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
-    <div>Register</div>
-  )
+    <>
+      {success ? (
+        <div>Success!</div>
+      ) : (
+        <Container className="py-5 my-5 border rounded-3 d-flex align-items-center justify-content-center">
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Username</Form.Label>
+              <Form.Control
+                type="username"
+                placeholder="Enter username"
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+              <Form.Check type="checkbox" label="Check me out" />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
+        </Container>
+      )}
+    </>
+  );
 }
 
-export default Register
+export default Register;
