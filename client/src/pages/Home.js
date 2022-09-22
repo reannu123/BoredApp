@@ -32,38 +32,10 @@ function Home() {
 
   return (
     <>
-      {success ? (
-        <div>Success!</div>
-      ) : (
+      {(
         <Container className="py-5 my-5 border rounded-3 d-flex align-items-center justify-content-center">
-          <Form onSubmit={handleSubmit}>
-            <h1 className="mb-5">Log In</h1>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Username</Form.Label>
-              <Form.Control
-                type="username"
-                name="username"
-                placeholder="Enter username"
-                onChange={handleChange}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                name="password"
-                placeholder="Password"
-                onChange={handleChange}
-              />
-            </Form.Group>
-            <p>
-              Don't have an account? <Link to="/register">Register!</Link>
-            </p>
-
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
-          </Form>
+          <h1>HOME</h1>
+            
         </Container>
       )}
     </>

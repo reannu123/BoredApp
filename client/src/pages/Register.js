@@ -34,7 +34,9 @@ function Register() {
   return (
     <>
       {success ? (
-        <div>Success!</div>
+        <Container className="py-5 my-5 border rounded-3 d-flex align-items-center justify-content-center">
+          <h1>Success!</h1>
+        </Container>
       ) : (
         <Container className="py-5 my-5 border rounded-3 d-flex align-items-center justify-content-center">
           <Form onSubmit={handleSubmit}>
