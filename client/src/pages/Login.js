@@ -37,7 +37,9 @@ function Login() {
     }
   };
 
-
+  if (localStorage.getItem("accessToken")) {
+    return <Navigate to="/" />;
+  }
   return (
     <>
       {success ? (

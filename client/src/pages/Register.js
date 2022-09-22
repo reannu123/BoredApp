@@ -1,7 +1,7 @@
 import { Alert, Container, Form, Button, Label } from "react-bootstrap";
 import { useState } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate} from "react-router-dom";
 import { instance, auth } from "../api/axios";
 
 function Register() {
@@ -15,6 +15,7 @@ function Register() {
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     console.log(user);
@@ -26,10 +27,19 @@ function Register() {
       });
       console.log(response);
       setSuccess(true);
+      setTimeout(() => {
+        navigate("/login");
+      }
+      , 2000);
+      
     } catch (e) {
       console.log(e);
     }
   };
+
+  if (localStorage.getItem("accessToken")) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <>
