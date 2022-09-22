@@ -16,15 +16,14 @@ function Login() {
   };
 
   const handleSubmit = async (e) => {
-    console.log(user);
     e.preventDefault();
     try {
       const response = await auth.post("/login", user, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });
-      console.log(response);
       console.log(response.data.accessToken);
+      localStorage.setItem("accessToken", response.data.accessToken);
       setSuccess(true);
     } catch (e) {
       console.log(e);
