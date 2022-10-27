@@ -58,7 +58,9 @@ class UsersController {
     }
   }
 
-  static async logoutUser(req, res, next) {}
+  static async logoutUser(req, res, next) {
+    console.log("Logged out from server")
+  }
 }
 
 module.exports = UsersController;
