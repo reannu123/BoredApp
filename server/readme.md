@@ -9,3 +9,9 @@ The Models are objects that serve as blueprints that define how an entry is stor
 # Data Access Object
 
 Data Access Objects are objects used for accessing data in a database. It is a wrapper around the database transaction calls. Data Access Objects are defined in the `dao` directory.
+
+# DOTENV Set-up
+    -DB_URL
+    -PORT
+    -ACCESS_TOKEN_SECRET
+    -REFRESH_TOKEN_SECRET

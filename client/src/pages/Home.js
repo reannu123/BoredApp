@@ -15,15 +15,12 @@ function Home() {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleLogout = async (e) => {
     e.preventDefault();
     try {
-      const response = await auth.post("/login", user, {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true,
-      });
-      console.log(response.data.accessToken);
-      localStorage.setItem("accessToken", response.data.accessToken);
+      auth.delete("/logout");
+      console.log("Logged Out")
+      localStorage.removeItem("accessToken");
       setSuccess(true);
     } catch (e) {
       console.log(e);
@@ -35,7 +32,11 @@ function Home() {
       {(
         <Container className="py-5 my-5 border rounded-3 d-flex align-items-center justify-content-center">
           <h1>HOME</h1>
-            
+          <Form onSubmit={handleLogout}>
+          <Button variant="primary" type="submit">
+              Submit
+            </Button>
+            </Form>
         </Container>
       )}
     </>
