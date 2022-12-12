@@ -27,4 +27,6 @@ authApp.post("/login", UsersController.loginUser);
 authApp.post("/register", UsersController.registerUser);
 authApp.delete("/logout", UsersController.logoutUser);
 
-authApp.listen(4000, () => console.log("Auth Server Started at 4000"));
+authApp.listen(process.env.PORT_AUTH, () =>
+  console.log(`Auth Server Started at ${process.env.PORT_AUTH}`)
+);
