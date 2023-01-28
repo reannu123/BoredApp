@@ -1,7 +1,8 @@
 import { Alert, Container, Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { instance, auth } from "../api/axios";
+import { instance, auth } from "../../api/axios";
+import "./login.css";
 
 function Login() {
   const [user, setUser] = useState({
@@ -14,7 +15,7 @@ function Login() {
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
-  
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -31,7 +32,6 @@ function Login() {
       setTimeout(() => {
         navigate("/");
       }, 2000);
-
     } catch (e) {
       console.log(e);
     }
@@ -40,15 +40,15 @@ function Login() {
   if (localStorage.getItem("accessToken")) {
     return <Navigate to="/" />;
   }
+
   return (
     <>
       {success ? (
         <Container className="py-5 my-5 border rounded-3 d-flex align-items-center justify-content-center">
           <h1>Success!</h1>
-            
         </Container>
       ) : (
-        <Container className="py-5 my-5 border rounded-3 d-flex align-items-center justify-content-center">
+        <Container className="page py-5 border rounded-3 d-flex align-items-center justify-content-center">
           <Form onSubmit={handleSubmit}>
             <h1 className="mb-5">Log In</h1>
             <Form.Group className="mb-3" controlId="formBasicEmail">

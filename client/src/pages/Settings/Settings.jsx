@@ -1,9 +1,9 @@
 import { Alert, Container, Form, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { instance, auth } from "../api/axios";
+import { instance, auth } from "../../api/axios";
 
-function Home() {
+function Settings() {
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -19,7 +19,7 @@ function Home() {
     e.preventDefault();
     try {
       auth.delete("/logout");
-      console.log("Logged Out")
+      console.log("Logged Out");
       localStorage.removeItem("accessToken");
       setSuccess(true);
     } catch (e) {
@@ -29,18 +29,18 @@ function Home() {
 
   return (
     <>
-      {(
+      {
         <Container className="py-5 my-5 border rounded-3 d-flex align-items-center justify-content-center">
-          <h1>HOME</h1>
+          <h1>Settings</h1>
           <Form onSubmit={handleLogout}>
-          <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit">
               Submit
             </Button>
-            </Form>
+          </Form>
         </Container>
-      )}
+      }
     </>
   );
 }
 
-export default Home;
+export default Settings;

@@ -2,7 +2,7 @@ import { Alert, Container, Form, Button, Label } from "react-bootstrap";
 import { useState } from "react";
 
 import { Link, Navigate, useNavigate} from "react-router-dom";
-import { instance, auth } from "../api/axios";
+import { instance, auth } from "../../api/axios";
 
 function Register() {
   const [user, setUser] = useState({

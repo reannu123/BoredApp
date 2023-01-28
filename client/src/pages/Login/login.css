@@ -1,0 +1,7 @@
+.page {
+  display: flex;
+  align-items: center;
+  height: 80vh;
+  margin: 10vh;
+  background-color: white;
+}
