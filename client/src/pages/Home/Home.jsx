@@ -82,12 +82,27 @@ function Home() {
           <NavBar user={user} setUser={setUser} />
           <div className="homeContainer">
             <div className="centerList">
-              <input
-                className="form-control text-bg-dark"
-                type="text"
-                onChange={(e) => setInputTask(e.target.value)}
-                onKeyDown={handleKeyDown}
-              />
+              <div className="d-flex col w-100">
+                <input
+                  className="form-control text-bg-dark"
+                  type="text"
+                  onChange={(e) => setInputTask(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  value={inputTask}
+                />
+                <button
+                  className="btn btn-primary"
+                  onClick={() => {
+                    if (inputTask === "") {
+                      return;
+                    }
+                    handleAddTask(inputTask);
+                    setInputTask("");
+                  }}
+                >
+                  Add
+                </button>
+              </div>
               <Lists setUpdate={setUpdate} lists={lists} setLists={setLists} />
             </div>
           </div>

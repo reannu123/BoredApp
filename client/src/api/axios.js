@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "http://178.128.58.213:5000",
 });
 
 const auth = axios.create({
-  baseURL: "http://localhost:4000",
+  baseURL: "http://178.128.58.213:4000",
 });
 
 export { instance, auth };
