@@ -1,6 +1,9 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+// use cors
+
+const cors = require("cors");
 require("dotenv").config();
 require("./auth/passport-config");
 
@@ -13,7 +16,12 @@ db.on("error", (error) => console.error(error));
 db.once("open", () => console.log("Connected to Database"));
 
 app.use(express.json());
-
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
 app.use("/api", require("./api"));
 
 app.get("*", (req, res) => {

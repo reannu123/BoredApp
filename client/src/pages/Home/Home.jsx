@@ -3,61 +3,96 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { instance, auth } from "../../api/axios";
 import "./home.css";
-
+import NoUser from "./NoUser/NoUser";
+import NavBar from "../../components/NavBar/NavBar";
+import Lists from "./Lists/Lists";
 function Home() {
   const [user, setUser] = useState();
+  const [inputTask, setInputTask] = useState("");
+  const [lists, setLists] = useState([]);
+  const [update, setUpdate] = useState(false);
 
+  // Checks localstorage if a user is logged in, sets user if so
   useEffect(() => {
     let accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
-      //verify accessToken first then set user as result from server
-      setUser(accessToken);
+      //TODO: Check expiry of access token first. Then set user as result from server
+      setUser(localStorage.getItem("username"));
     }
   }, []);
 
-  const handleLogout = async (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await instance.get("/api/task/getall/mine", {
+        headers: {
+          ContentType: "application/json",
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+        withCredentials: true,
+      });
+
+      setLists(response.data);
+    };
+    fetchData()
+      // make sure to catch any error
+      .catch(console.error);
+  }, [update]);
+
+  const handleAddTask = async (task) => {
     try {
-      // auth.delete("/logout");
-      console.log("Logged Out");
-      localStorage.removeItem("accessToken");
-      setUser();
+      const response = await instance.post(
+        "/api/task/add",
+
+        {
+          task: task,
+        },
+        {
+          headers: {
+            ContentType: "application/json",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+          withCredentials: true,
+        }
+      );
+
+      setLists([...lists, task]);
+      setUpdate(!update);
     } catch (e) {
       console.log(e);
     }
   };
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      localStorage.setItem("accessToken","hello");
-      let accessToken = localStorage.getItem("accessToken");
-      setUser(accessToken);
-    } catch (e) {
-      console.log(e);
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      // 👇 Get input value
+      if (inputTask === "") {
+        return;
+      }
+      handleAddTask(inputTask);
+      event.target.value = "";
+      setInputTask("");
     }
   };
-
   return (
-    <>{!user ? 
-    <div className="noUserContainer">
-      <div className="actionContainer">
-
-        <h1 onClick={handleLogin}>BoredApp</h1>
-        <div className="buttonRow">
-          <Link to="/login" className="linkButton login">Log In
-        </Link>
-        <Link to="/register" className="linkButton register">Register
-        </Link>
-        </div>
-      </div>
-    </div>
-    : 
-    <div className="homeContainer">
-        HomeContainer
-        <h1 onClick={handleLogout}>Logged In</h1>
-    </div>}
-      
+    <>
+      {!user ? (
+        <NoUser />
+      ) : (
+        <>
+          <NavBar user={user} setUser={setUser} />
+          <div className="homeContainer">
+            <div className="centerList">
+              <input
+                className="form-control text-bg-dark"
+                type="text"
+                onChange={(e) => setInputTask(e.target.value)}
+                onKeyDown={handleKeyDown}
+              />
+              <Lists setUpdate={setUpdate} lists={lists} setLists={setLists} />
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 }

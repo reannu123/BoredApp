@@ -1,7 +1,6 @@
 .page {
   display: flex;
   align-items: center;
-  height: 80vh;
-  margin: 10vh;
+  height: 100vh;
   background-color: white;
 }

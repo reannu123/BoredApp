@@ -27,6 +27,7 @@ function Login() {
       });
       console.log(response.data.accessToken);
       localStorage.setItem("accessToken", response.data.accessToken);
+      localStorage.setItem("username", user.username);
       setSuccess(true);
 
       setTimeout(() => {
@@ -37,18 +38,18 @@ function Login() {
     }
   };
 
-  if (localStorage.getItem("accessToken")) {
-    return <Navigate to="/" />;
-  }
+  // if (localStorage.getItem("accessToken")) {
+  //   return <Navigate to="/" />;
+  // }
 
   return (
-    <>
+    <div className="page align-items-center justify-content-center">
       {success ? (
-        <Container className="py-5 my-5 border rounded-3 d-flex align-items-center justify-content-center">
+        <div className="p-5 m-5 border rounded-3 d-flex align-items-center justify-content-center">
           <h1>Success!</h1>
-        </Container>
+        </div>
       ) : (
-        <Container className="page py-5 border rounded-3 d-flex align-items-center justify-content-center">
+        <Container className="py-5 border rounded-3 d-flex align-items-center justify-content-center">
           <Form onSubmit={handleSubmit}>
             <h1 className="mb-5">Log In</h1>
             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -79,7 +80,7 @@ function Login() {
           </Form>
         </Container>
       )}
-    </>
+    </div>
   );
 }
 

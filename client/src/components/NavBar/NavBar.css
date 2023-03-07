@@ -1,0 +1,31 @@
+.header {
+  background-color: #000;
+  height: 10vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+  transition: all 0.5s ease;
+}
+
+.icon-button {
+  background-color: transparent;
+  margin-left: 20%;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  transition: all 0.15s linear;
+}
+
+.icon-button:hover {
+  background-color: #232121;
+  transition: all 0.15s ease;
+}

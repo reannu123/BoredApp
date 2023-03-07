@@ -5,7 +5,7 @@ class TasksController {
     try {
       const tasks = await TaskDao.getTasks();
 
-      tasks.length > 0 ? res.send(tasks) : res.json("No Tasks Found");
+      tasks.length > 0 ? res.send(tasks) : res.json([]);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
@@ -15,7 +15,7 @@ class TasksController {
       const username = req.user[0].username;
       const tasks = await TaskDao.getTasks(username);
 
-      tasks.length > 0 ? res.send(tasks) : res.json("No Tasks Found");
+      tasks.length > 0 ? res.send(tasks) : res.json([]);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }

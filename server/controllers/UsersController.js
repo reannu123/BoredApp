@@ -41,8 +41,7 @@ class UsersController {
         if (await bcrypt.compare(password, user[0].password)) {
           const accessToken = jwt.sign(
             { username: user[0].username },
-            process.env.ACCESS_TOKEN_SECRET,
-            { expiresIn: "5m" }
+            process.env.ACCESS_TOKEN_SECRET
           );
           res.json({ accessToken: accessToken });
         } else {
@@ -59,7 +58,7 @@ class UsersController {
   }
 
   static async logoutUser(req, res, next) {
-    console.log("Logged out from server")
+    console.log("Logged out from server");
   }
 }
 
