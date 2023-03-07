@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon .",
+    "dev": "nodemon . && npm run devauth",
     "devauth": "nodemon ./auth/authServer.js"
   },
   "keywords": [],
