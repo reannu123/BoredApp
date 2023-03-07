@@ -4,8 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon . && npm run devauth",
-    "devauth": "nodemon ./auth/authServer.js"
+    "dev": "concurrently npm:watch:*",
+    "watch:api": "nodemon .",
+    "watch:auth": "nodemon ./auth/authServer.js"
   },
   "keywords": [],
   "author": "",
