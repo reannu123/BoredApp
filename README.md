@@ -1,4 +1,8 @@
-# BoredApp
+# BoredApp - Client
+
+## Note: This is only the client component of the app. The API can be accessed in this [repository](https://github.com/reannu123/BoredApp-server).
+
+<br>
 
 ## Simple CRUD To-do list App using the MERN Stack
 
@@ -31,21 +35,11 @@ This is a simple CRUD To-do list app that utilizes the MERN stack. It is a simpl
 
 `npm install`
 
-### 3. Create an .env file in the `server` directory
+### 2.1 Start the server
 
-Proceed to the server env variables section to see what variables are needed.
+The server that serves the API for this app can be accessed in this [repository](https://github.com/reannu123/BoredApp-server)
 
-### 3. Start the server
-
-Navigate to the `server` directory and execute the following command: <br>
-`npm run dev`
-
-### 4. Start the authentication server
-
-Still in the `server` directory execute the following command: <br>
-`npm run devauth`
-
-### 5. Start the client
+### 3. Start the client
 
 Navigate to the `client` directory and execute the following command: <br>
 `npm start`
