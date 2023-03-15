@@ -21,11 +21,10 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await auth.post("/login", user, {
+      const response = await auth.post("login", user, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });
-      console.log(response.data.accessToken);
       localStorage.setItem("accessToken", response.data.accessToken);
       localStorage.setItem("username", user.username);
       setSuccess(true);
