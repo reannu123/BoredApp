@@ -9,6 +9,12 @@ consolidated into this single Dockerized monorepo.
 > making it reproducible — clone, configure from examples, and run with one
 > command — not adding features. See [Limitations](#limitations).
 
+## Screenshots
+
+| Landing (logged out) | Dashboard (logged in) |
+| --- | --- |
+| ![Landing page](docs/screenshots/landing.png) | ![Task dashboard](docs/screenshots/dashboard.png) |
+
 ## Stack
 
 | Layer    | Tech                                                            |

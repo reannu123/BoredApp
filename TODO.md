@@ -6,7 +6,7 @@ Last updated: 2026-06-20
 
 - Name: BoredApp
 - Path: `/home/reannu123/Projects/portfolio/BoredApp` (monorepo)
-- Status: active
+- Status: complete (revival milestone met 2026-06-20)
 - Stage: revival
 - Portfolio role: Full-stack MERN CRUD + JWT authentication example
 
@@ -29,16 +29,15 @@ a single `docker compose up`.
 - [x] Another developer can configure and run the project (env examples + one command).
 - [x] The main workflow has been verified: register -> login -> add task -> mark done -> delete.
 - [x] Setup, purpose, stack, and limitations are documented in one README.
-- [ ] Portfolio-facing proof is present (screenshots).
+- [x] Portfolio-facing proof is present (screenshots).
 
 ## Now
 
-- [ ] Archive `BoredApp-server` with a pointer to the monorepo (needs go-ahead).
-- [ ] Add screenshots of the running app to the README.
+- Revival milestone complete. No active tasks; see `Later` for optional follow-ups.
 
 ## Next
 
-- [ ] Re-run the verified `docker compose up --build` after merge as a smoke check.
+- (none)
 
 ## Later
 
@@ -79,3 +78,8 @@ a single `docker compose up`.
 - 2026-06-20: Pushed the monorepo and **merged PR #1**
   (https://github.com/reannu123/BoredApp/pull/1) into `master`; deleted the
   revival branch.
+- 2026-06-20: Archived the old `BoredApp-server` repo (read-only) after pointing
+  its README at this monorepo.
+- 2026-06-20: Captured screenshots (`docs/screenshots/landing.png`,
+  `dashboard.png`) via headless Chromium against the running stack and added a
+  Screenshots section to the README. **Revival milestone complete.**
