@@ -1,0 +1,15 @@
+# Keep build context small and reproducible.
+**/node_modules
+**/build
+**/dist
+**/coverage
+**/.git
+**/*.log
+
+# Local env files (real secrets) — but keep examples for reference.
+**/.env
+**/.env.local
+**/.env.*.local
+!**/.env.example
+
+.DS_Store
