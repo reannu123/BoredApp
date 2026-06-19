@@ -26,15 +26,14 @@ a single `docker compose up`.
 
 ## Definition Of Done
 
-- [ ] Another developer can configure and run the project (env examples + one command).
-- [ ] The main workflow has been verified: register -> login -> add task -> mark done -> delete.
-- [ ] Setup, purpose, stack, and limitations are documented in one README.
+- [x] Another developer can configure and run the project (env examples + one command).
+- [x] The main workflow has been verified: register -> login -> add task -> mark done -> delete.
+- [x] Setup, purpose, stack, and limitations are documented in one README.
 - [ ] Portfolio-facing proof is present (screenshots).
 
 ## Now
 
-- [ ] Commit the monorepo and push to `BoredApp` via PR (needs confirmation).
-- [ ] Archive `BoredApp-server` with a pointer to the monorepo (needs confirmation).
+- [ ] Archive `BoredApp-server` with a pointer to the monorepo (needs go-ahead).
 - [ ] Add screenshots of the running app to the README.
 
 ## Next
@@ -77,3 +76,6 @@ a single `docker compose up`.
   --build`. nginx serves the SPA; `register → login → add task → list → mark
   done → delete` all succeed; protected route returns 401 without a token.
   9/9 checks passed.
+- 2026-06-20: Pushed the monorepo and **merged PR #1**
+  (https://github.com/reannu123/BoredApp/pull/1) into `master`; deleted the
+  revival branch.
